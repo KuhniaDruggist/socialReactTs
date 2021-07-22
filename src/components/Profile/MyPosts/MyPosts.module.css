@@ -1,0 +1,16 @@
+.wrapper {
+    margin-right: 10px;
+    grid-area: posts;
+    background-color: red;
+    width: 50vw;
+}
+
+.title {
+    margin: 0;
+    padding: 0;
+}
+
+.posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
