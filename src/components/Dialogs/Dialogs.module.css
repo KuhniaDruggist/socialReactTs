@@ -1,0 +1,27 @@
+.dialogs {
+    display: grid;
+    grid-auto-rows: 60px 1fr;
+    grid-template-columns: minmax(200px, 1fr) 5fr;
+}
+.title {
+    margin: 0;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    font-size: 30px;
+    color: cornflowerblue;
+}
+
+.list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.messagesList {
+    margin-top: 10px;
+    padding: 20px;
+    max-width: 600px;
+    border: 1px solid black;
+    border-radius: 5px;
+}

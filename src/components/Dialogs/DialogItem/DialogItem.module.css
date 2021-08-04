@@ -1,0 +1,21 @@
+.item {
+    padding-left: 60px;
+}
+
+.link {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+    font-size: 18px;
+    color: skyblue;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: deepskyblue;
+}
+
+.active {
+    color: deepskyblue;
+    font-weight: bold;
+}
