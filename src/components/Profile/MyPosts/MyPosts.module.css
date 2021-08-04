@@ -1,12 +1,14 @@
-.wrapper {
-    margin-right: 10px;
-}
-
 .title {
     margin-top: 0;
-    margin-bottom: 50px;
     padding: 0;
-    font-size: 25px;
+    font-size: 30px;
+    color: cornflowerblue;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
 }
 
 .posts {

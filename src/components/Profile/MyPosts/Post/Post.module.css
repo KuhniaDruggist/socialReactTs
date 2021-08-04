@@ -1,8 +1,40 @@
+.post {
+    max-width: 500px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #D2E3FF;
+    border-radius: 5px;
+}
+
+.postHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
 .photo {
     width: 50px;
     height: auto;
+    margin-right: 10px;
+    border-radius: 50%;
 }
 
 .title {
+    margin: 0;
     text-transform: uppercase;
+}
+
+.content,
+.likes {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 60px;
+}
+
+.content {
+    margin-bottom: 5px;
+}
+
+.likes {
+    font-size: 12px;
+    font-weight: bold;
 }

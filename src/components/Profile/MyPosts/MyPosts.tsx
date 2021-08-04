@@ -1,23 +1,25 @@
 import React from 'react';
 import style from './MyPosts.module.css';
-import Post from "./Post/Post";
+import Post from './Post/Post';
+import PostForm from './PostForm/PostForm';
 
 function MyPosts() {
     return (
-        <div className={style.wrapper}>
-            <h3 className={style.title}>Мои публикации</h3>
-            <form className={style.form}>
-                <input name='newPostTitle' placeholder='Озаглавьте свой пост'/>
-                <textarea name='newPostText' placeholder='Добавьте текст поста'/>
-                <button className={style.button} type="submit">Добавить</button>
-            </form>
-            <ul className={style.posts}>
-                <Post/>
-                <Post/>
-                <Post/>
-            </ul>
+        <div>
+            <h3 className={style.title}>My publications</h3>
+            <div className={style.wrapper}>
+                <PostForm/>
+                <ul className={style.posts}>
+                    <Post title={'Чернобыль'}
+                          message={'Девять лет назад я поехал на экскурсию в Чернобыль'}
+                          likes={20000}/>
+                    <Post title={'23.34'}
+                          message={'12 суток - не за что'}
+                          likes={200000}/>
+                </ul>
+            </div>
         </div>
-    )
+    );
 }
 
 export default MyPosts;

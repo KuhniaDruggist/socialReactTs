@@ -1,0 +1,41 @@
+.titleForm {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 300px;
+    margin-bottom: 50px;
+}
+
+.titlePost {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.textPost {
+    padding: 5px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.button {
+    padding: 10px;
+    font: inherit;
+    font-weight: bold;
+    border: 2px solid black;
+    background: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: white;
+    background-color: skyblue;
+}
+
+.button:active {
+    background-color: cornflowerblue;
+}
