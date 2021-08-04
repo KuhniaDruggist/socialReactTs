@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import style from './Navbar.module.css';
 
 function Navbar() {
@@ -7,28 +8,28 @@ function Navbar() {
             <nav className={style.nav}>
                 <ul className={style.list}>
                     <li className={style.item}>
-                        Моя страница
+                        <NavLink to="/profile"
+                                 activeClassName={style.active}>
+                            Моя страница
+                        </NavLink>
                     </li>
                     <li className={style.item}>
-                        Новости
+                        <NavLink to="/news"
+                                 activeClassName={style.active}>
+                            Новости
+                        </NavLink>
                     </li>
                     <li className={style.item}>
-                        Мессенджер
+                        <NavLink to="/dialogs"
+                                 activeClassName={style.active}>
+                            Сообщения
+                        </NavLink>
                     </li>
                     <li className={style.item}>
-                        Друзья
-                    </li>
-                    <li className={style.item}>
-                        Все пользователи
-                    </li>
-                    <li className={style.item}>
-                        Сообщества
-                    </li>
-                    <li className={style.item}>
-                        Фотографии
-                    </li>
-                    <li className={style.item}>
-                        Музыка
+                        <NavLink to="/friends"
+                                 activeClassName={style.active}>
+                            Друзья
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
