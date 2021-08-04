@@ -6,12 +6,12 @@ function ProfileInfo() {
         <div className={style.info}>
             <div className={style.userPhoto}>
                 <img className={style.photo} alt="Аватар пользователя"
-                     src={'https://i.pinimg.com/736x/52/cc/bc/52ccbc8cc85e151b590476e1a815a96d.jpg'}/>
-                <button className={style.button} type="button">Редактировать</button>
+                     src={'https://avatars.githubusercontent.com/u/48412681?v=4'}/>
+                <button className={style.button} type="button">Edit</button>
             </div>
 
             <div>
-                <h2 className={style.fullName}>Алексей Кухаренко</h2>
+                <h2 className={style.fullName}>Alexei Kuharenko</h2>
                 <p className={style.aboutMe}>learn React with TypeScript</p>
             </div>
         </div>
