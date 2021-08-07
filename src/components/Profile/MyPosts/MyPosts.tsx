@@ -1,23 +1,15 @@
 import React from 'react';
 import style from './MyPosts.module.css';
-import Post, {PostType} from './Post/Post';
+import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';
+import {PostType} from '../../../redux/state';
 
-function MyPosts() {
-    const posts: PostType[] = [
-        {
-            title: 'Чернобыль',
-            message: 'Девять лет назад я поехал на экскурсию в Чернобыль',
-            likes: 20000
-        },
-        {
-            title: '23.34',
-            message: '12 суток - не за что',
-            likes: 200000
-        }
-    ];
+type PropsType = {
+    posts: PostType[]
+}
 
-    let postElements = posts.map(p => <Post title={p.title} message={p.message} likes={p.likes}/>)
+function MyPosts(props: PropsType) {
+    let postElements = props.posts.map(p => <Post title={p.title} message={p.message} likes={p.likes}/>)
     return (
         <div>
             <h3 className={style.title}>My publications</h3>

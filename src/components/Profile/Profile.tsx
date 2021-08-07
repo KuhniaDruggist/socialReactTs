@@ -3,13 +3,18 @@ import style from "./Profile.module.css"
 import Background from './Background/Background';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {ProfilePageType} from '../../redux/state';
 
-function Profile() {
+type PropsType = {
+    state: ProfilePageType
+}
+
+function Profile(props: PropsType) {
     return (
         <div className={style.wrapper}>
             <Background />
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts posts={props.state.posts}/>
         </div>
     );
 }
