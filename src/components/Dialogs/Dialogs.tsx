@@ -9,8 +9,8 @@ type PropsType = {
 }
 
 function Dialogs(props: PropsType) {
-    let dialogElements = props.state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
-    let messageElements = props.state.messages.map(m => <Message  message={m.message} />)
+    let dialogElements = props.state.dialogs.map(d => <DialogItem id={d.id} name={d.name} photo={d.photo}/>)
+    let messageElements = props.state.messages.map(m => <Message  message={m.message} position={m.position}/>)
 
     return (
         <div className={style.dialogs}>

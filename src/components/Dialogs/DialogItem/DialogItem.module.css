@@ -1,8 +1,19 @@
 .item {
-    padding-left: 60px;
+    display: flex;
+
+    margin: 10px 0;
+    padding-left: 30px;
+}
+
+.avatar {
+    width: 35px;
+    height: auto;
+
+    border-radius: 50%;
 }
 
 .link {
+    margin-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     display: inline-block;

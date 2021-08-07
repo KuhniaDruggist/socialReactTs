@@ -1,0 +1,53 @@
+.item {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.avatar {
+    flex-shrink: 0;
+
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.text {
+    box-sizing: border-box;
+    max-width: 300px;
+    margin: 0;
+    padding: 10px;
+}
+
+.left {
+    position: relative;
+    left: 0;
+}
+
+.left .avatar {
+    margin-right: 10px;
+    background-color: antiquewhite;
+}
+
+.left .text {
+    background-color: antiquewhite;
+    border-radius: 10px 10px 10px 0;
+}
+
+.right {
+    flex-direction: row-reverse;
+
+    position: relative;
+    right: 0;
+}
+
+.right .avatar {
+    margin-left: 10px;
+    background-color: aliceblue;
+}
+
+.right .text {
+    background-color: aliceblue;
+    border-radius: 10px 10px 0 10px;
+}

@@ -6,6 +6,7 @@ import {DialogType} from '../../../redux/state';
 function DialogItem(props: DialogType) {
     return (
         <li className={style.item}>
+            <img className={style.avatar} src={props.photo} alt={'Аватар пользователя'}/>
             <NavLink to={"/dialogs/" + props.id} className={style.link} activeClassName={style.active}>{props.name}</NavLink>
         </li>
     );
