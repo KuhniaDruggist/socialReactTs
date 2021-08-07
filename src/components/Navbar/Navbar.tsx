@@ -1,8 +1,14 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import style from './Navbar.module.css';
+import {NavbarType} from '../../redux/state';
+import BestFriends from './BestFriends/BestFriends';
 
-function Navbar() {
+type PropsType = {
+    state: NavbarType
+}
+
+function Navbar(props: PropsType) {
     return (
         <div className={style.wrapper}>
             <nav className={style.nav}>
@@ -33,6 +39,8 @@ function Navbar() {
                     </li>
                 </ul>
             </nav>
+
+            <BestFriends bestFriends={props.state.bestFriends}/>
         </div>
     );
 }

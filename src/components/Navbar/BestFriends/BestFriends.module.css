@@ -1,0 +1,43 @@
+.title {
+    padding: 0;
+    margin: 0 16px 20px;
+    color: gold;
+}
+.friendsList {
+    display: flex;
+    flex-direction: column;
+    margin: 0 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.user {
+    margin-bottom: 10px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: tan;
+}
+
+.userAvatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+
+    background-color: grey;
+    border-radius: 50%;
+}
+
+.userAvatar img {
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+}
