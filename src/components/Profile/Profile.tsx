@@ -5,16 +5,21 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ProfilePageType} from '../../redux/state';
 
-type PropsType = {
+type ProfilePropsType = {
     state: ProfilePageType
 }
 
-function Profile(props: PropsType) {
+function Profile(props: ProfilePropsType) {
     return (
         <div className={style.wrapper}>
             <Background />
             <ProfileInfo />
-            <MyPosts posts={props.state.posts}/>
+            <MyPosts posts={props.state.posts}
+                     addPost={props.state.addPost}
+                     newPostTitle={props.state.newPostTitle}
+                     changeNewPostTitle={props.state.changeNewPostTitle}
+                     changeNewPostText={props.state.changeNewPostText}
+                     newPostText={props.state.newPostText} />
         </div>
     );
 }
