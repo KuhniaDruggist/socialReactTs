@@ -1,4 +1,5 @@
 .app-wrapper {
+  font-family: "Segoe UI", "Arial Narrow", sans-serif;
   display: grid;
   grid-template-areas:
   "header header"
