@@ -1,12 +1,17 @@
-import React from 'react';
+import state, {subscriber} from './redux/state';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import state from './redux/state';
 import {BrowserRouter} from 'react-router-dom';
+import App from './App';
+import React from 'react';
 
-ReactDOM.render(
-    <BrowserRouter>
-        <App state={state}/>
-    </BrowserRouter>, document.getElementById('root')
-);
+export const renderEntireTree = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={state}/>
+        </BrowserRouter>, document.getElementById('root')
+    );
+};
+
+renderEntireTree();
+
+subscriber(renderEntireTree);
