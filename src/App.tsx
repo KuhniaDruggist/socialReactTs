@@ -9,11 +9,11 @@ import News from './components/News/News';
 import Friends from './components/Friends/Friends';
 import {RootStateType} from './redux/state';
 
-type PropsType = {
+type AppPropsType = {
     state: RootStateType
 }
 
-function App(props: PropsType) {
+function App(props: AppPropsType) {
     return (
         <div className="app-wrapper">
             <Header/>
