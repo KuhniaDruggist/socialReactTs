@@ -17,7 +17,11 @@
     margin: 0;
     list-style: none;
 }
-
+.messagesWrapper {
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 500px;
+}
 .messagesList {
     position: relative;
 
@@ -25,8 +29,36 @@
     flex-direction: column;
 
     margin-top: 10px;
+    margin-bottom: 15px;
     padding: 20px;
     max-width: 500px;
-    border: 1px solid black;
-    border-radius: 5px;
+}
+
+.messageForm {
+    display: flex;
+}
+
+.textMessage {
+    /*box-sizing: border-box;*/
+    width: 100%;
+    resize: none;
+    border: none;
+    padding-top: 10px;
+    padding-left: 10px;
+    background-color: rgba(177, 177, 177, 0.1);
+}
+
+.messageButton {
+    width: 100px;
+    border: none;
+    background-color: rgba(177, 177, 177, 0.1);
+    cursor: pointer;
+}
+
+.messageButton:hover {
+    background-color: rgba(177, 177, 177, 0.5);
+}
+
+.messageButton:active {
+    background-color: rgba(177, 177, 177, 1);
 }
