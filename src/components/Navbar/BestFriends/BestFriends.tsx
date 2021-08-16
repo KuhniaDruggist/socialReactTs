@@ -8,7 +8,7 @@ type PropsType = {
 }
 
 const BestFriends = (props: PropsType) => {
-    let friendsElements = props.bestFriends.map(friend => <FriendItem name={ friend.name } id={ friend.id } photo={friend.photo}/>)
+    let friendsElements = props.bestFriends.map(friend => <FriendItem key={friend.id} name={ friend.name } id={ friend.id } photo={friend.photo}/>)
 
     return (
         <div>
