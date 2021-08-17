@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './BestFriends.module.css';
 import FriendItem from "./FriendItem/FriendItem";
-import {FriendType} from '../../../redux/state';
+import {FriendType} from '../../../redux/store';
 
 type PropsType = {
     bestFriends: FriendType[]

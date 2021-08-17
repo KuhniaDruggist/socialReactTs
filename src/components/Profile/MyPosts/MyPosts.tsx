@@ -2,7 +2,7 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';
-import {PostType} from '../../../redux/state';
+import {PostType} from '../../../redux/store';
 
 type MyPostPropsType = {
     addPost: () => void
