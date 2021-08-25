@@ -5,9 +5,7 @@ export type RootStoreType = {
     _subscriber: () => void
     subscribe: (observer: () => void) => void
     getState: () => StateType
-    addPost: () => void
-    changeNewPostTitle: (title: string) => void
-    changeNewPostText: (text: string) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 export type StateType = {
@@ -53,6 +51,20 @@ export type FriendType = {
     photo: string
 }
 
+//Action types
+export type ActionTypes = AddPostActionType | ChangeNewPostTitleActionType | ChangeNewPostTextActionType;
+type AddPostActionType = {
+    type: 'ADD_POST'
+}
+type ChangeNewPostTitleActionType = {
+    type: 'CHANGE_NEW_POST_TITLE'
+    title: string
+}
+type ChangeNewPostTextActionType = {
+    type: 'CHANGE_NEW_POST_TEXT'
+    text: string
+}
+
 export const store: RootStoreType = {
     _state: {
         profilePage: {
@@ -75,10 +87,26 @@ export const store: RootStoreType = {
         },
         dialogsPage: {
             dialogs: [
-                {id: v1(), name: 'Виталий', photo: 'https://i.pinimg.com/736x/52/cc/bc/52ccbc8cc85e151b590476e1a815a96d.jpg'},
-                {id: v1(), name: 'Себастьян', photo: 'https://image.freepik.com/free-vector/bearded-man-avatar-man-vector-portrait_9385-36.jpg'},
-                {id: v1(), name: 'Анжела Перл', photo: 'https://sunmag.me/wp-content/uploads/2019/11/sunmag-004-small-avatar.png'},
-                {id: v1(), name: 'Кристофер', photo: 'https://i.pinimg.com/originals/e4/55/d2/e455d2e6e205c8eeeda1356a00cc6bfb.jpg'},
+                {
+                    id: v1(),
+                    name: 'Виталий',
+                    photo: 'https://i.pinimg.com/736x/52/cc/bc/52ccbc8cc85e151b590476e1a815a96d.jpg'
+                },
+                {
+                    id: v1(),
+                    name: 'Себастьян',
+                    photo: 'https://image.freepik.com/free-vector/bearded-man-avatar-man-vector-portrait_9385-36.jpg'
+                },
+                {
+                    id: v1(),
+                    name: 'Анжела Перл',
+                    photo: 'https://sunmag.me/wp-content/uploads/2019/11/sunmag-004-small-avatar.png'
+                },
+                {
+                    id: v1(),
+                    name: 'Кристофер',
+                    photo: 'https://i.pinimg.com/originals/e4/55/d2/e455d2e6e205c8eeeda1356a00cc6bfb.jpg'
+                },
                 {id: v1(), name: 'Мирослава', photo: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'}
             ],
             messages: [
@@ -91,9 +119,21 @@ export const store: RootStoreType = {
         },
         navbar: {
             bestFriends: [
-                {id: 1, name: 'Виталий', photo: 'https://i.pinimg.com/736x/52/cc/bc/52ccbc8cc85e151b590476e1a815a96d.jpg'},
-                {id: 2, name: 'Себастьян', photo: 'https://image.freepik.com/free-vector/bearded-man-avatar-man-vector-portrait_9385-36.jpg'},
-                {id: 3, name: 'Кристофер', photo: 'https://i.pinimg.com/originals/e4/55/d2/e455d2e6e205c8eeeda1356a00cc6bfb.jpg'}
+                {
+                    id: 1,
+                    name: 'Виталий',
+                    photo: 'https://i.pinimg.com/736x/52/cc/bc/52ccbc8cc85e151b590476e1a815a96d.jpg'
+                },
+                {
+                    id: 2,
+                    name: 'Себастьян',
+                    photo: 'https://image.freepik.com/free-vector/bearded-man-avatar-man-vector-portrait_9385-36.jpg'
+                },
+                {
+                    id: 3,
+                    name: 'Кристофер',
+                    photo: 'https://i.pinimg.com/originals/e4/55/d2/e455d2e6e205c8eeeda1356a00cc6bfb.jpg'
+                }
             ]
         }
     },
@@ -106,27 +146,29 @@ export const store: RootStoreType = {
     getState() {
         return this._state
     },
-    addPost() {
-        if (this._state.profilePage.newPostTitle && this._state.profilePage.newPostText) {
-            this._state.profilePage.posts.push(
-                {
-                    id: v1(),
-                    title: this._state.profilePage.newPostTitle,
-                    message: this._state.profilePage.newPostText,
-                    likes: 0
-                }
-            );
-            this._state.profilePage.newPostTitle = '';
-            this._state.profilePage.newPostText = '';
+    dispatch(action) {
+        if (action.type === 'ADD_POST') {
+            if (this._state.profilePage.newPostTitle && this._state.profilePage.newPostText) {
+                this._state.profilePage.posts.push(
+                    {
+                        id: v1(),
+                        title: this._state.profilePage.newPostTitle,
+                        message: this._state.profilePage.newPostText,
+                        likes: 0
+                    }
+                );
+                this._state.profilePage.newPostTitle = '';
+                this._state.profilePage.newPostText = '';
+            }
+            this._subscriber();
         }
-        this._subscriber();
-    },
-    changeNewPostTitle(title: string) {
-        this._state.profilePage.newPostTitle = title;
-        this._subscriber();
-    },
-    changeNewPostText(text: string) {
-        this._state.profilePage.newPostText = text;
-        this._subscriber();
+        else if (action.type === 'CHANGE_NEW_POST_TITLE') {
+            this._state.profilePage.newPostTitle = action.title;
+            this._subscriber();
+        }
+        else if (action.type === 'CHANGE_NEW_POST_TEXT') {
+            this._state.profilePage.newPostText = action.text;
+            this._subscriber();
+        }
     }
 }
