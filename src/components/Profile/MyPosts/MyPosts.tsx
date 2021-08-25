@@ -2,12 +2,10 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';
-import {PostType} from '../../../redux/store';
+import {ActionTypes, PostType} from '../../../redux/store';
 
 type MyPostPropsType = {
-    addPost: () => void
-    changeNewPostTitle: (title: string) => void
-    changeNewPostText: (text: string) => void
+    dispatch: (action: ActionTypes) => void
     posts: PostType[]
     newPostTitle: string
     newPostText: string
@@ -19,11 +17,10 @@ function MyPosts(props: MyPostPropsType) {
         <div>
             <h3 className={style.title}>My publications</h3>
             <div className={style.wrapper}>
-                <PostForm addPost={props.addPost}
+                <PostForm dispatch={props.dispatch}
                           newPostTitle={props.newPostTitle}
                           newPostText={props.newPostText}
-                          changeNewPostTitle={props.changeNewPostTitle}
-                          changeNewPostText={props.changeNewPostText} />
+                           />
                 <ul className={style.posts}>
                     { postElements }
                 </ul>

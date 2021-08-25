@@ -1,21 +1,20 @@
 import React from 'react';
 import { ChangeEvent } from 'react';
 import style from './PostForm.module.css';
+import {ActionTypes} from '../../../../redux/store';
 
 type PostFormPropsType = {
-    addPost: () => void
-    changeNewPostTitle: (title: string) => void
-    changeNewPostText: (text: string) => void
+    dispatch: (action: ActionTypes) => void
     newPostTitle: string
     newPostText: string
 }
 
 function PostForm(props: PostFormPropsType) {
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.changeNewPostTitle(e.currentTarget.value);
-    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.changeNewPostText(e.currentTarget.value);
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.dispatch({type: 'CHANGE_NEW_POST_TITLE', title: e.currentTarget.value});
+    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch({type: 'CHANGE_NEW_POST_TEXT', text: e.currentTarget.value});
 
     const addPost = () => {
-        props.addPost();
+        props.dispatch({type: 'ADD_POST'});
     }
 
     return (
