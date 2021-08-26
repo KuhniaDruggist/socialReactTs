@@ -1,7 +1,6 @@
-import React from 'react';
-import { ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import style from './PostForm.module.css';
-import {ActionTypes} from '../../../../redux/store';
+import {ActionTypes, addPostAC, changeNewPostTextAC, changeNewPostTitleAC} from '../../../../redux/store';
 
 type PostFormPropsType = {
     dispatch: (action: ActionTypes) => void
@@ -10,12 +9,10 @@ type PostFormPropsType = {
 }
 
 function PostForm(props: PostFormPropsType) {
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.dispatch({type: 'CHANGE_NEW_POST_TITLE', title: e.currentTarget.value});
-    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch({type: 'CHANGE_NEW_POST_TEXT', text: e.currentTarget.value});
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewPostTitleAC(e.currentTarget.value));
+    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch(changeNewPostTextAC(e.currentTarget.value));
 
-    const addPost = () => {
-        props.dispatch({type: 'ADD_POST'});
-    }
+    const addPost = () => props.dispatch(addPostAC());
 
     return (
         <div className={style.postForm}>
@@ -31,7 +28,7 @@ function PostForm(props: PostFormPropsType) {
                           placeholder="Add post text"
                           value={props.newPostText}
                           onChange={ changeText }/>
-                <button className={style.button} type="button" onClick={addPost}>Add</button>
+                <button className={style.button} type="button" onClick={addPost} >Add</button>
             </form>
         </div>
     );
