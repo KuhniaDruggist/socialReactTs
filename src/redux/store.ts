@@ -1,5 +1,14 @@
 import {v1} from 'uuid';
 
+//Constants action type
+const ADD_POST = 'ADD_POST';
+const CHANGE_NEW_POST_TITLE = 'CHANGE_NEW_POST_TITLE';
+const CHANGE_NEW_POST_TEXT = 'CHANGE_NEW_POST_TEXT';
+
+//Action types
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewPostTitleAC> | ReturnType<typeof changeNewPostTextAC>;
+
+//Store typing
 export type RootStoreType = {
     _state: StateType
     _subscriber: () => void
@@ -49,20 +58,6 @@ export type FriendType = {
     id: number
     name: string
     photo: string
-}
-
-//Action types
-export type ActionTypes = AddPostActionType | ChangeNewPostTitleActionType | ChangeNewPostTextActionType;
-type AddPostActionType = {
-    type: 'ADD_POST'
-}
-type ChangeNewPostTitleActionType = {
-    type: 'CHANGE_NEW_POST_TITLE'
-    title: string
-}
-type ChangeNewPostTextActionType = {
-    type: 'CHANGE_NEW_POST_TEXT'
-    text: string
 }
 
 export const store: RootStoreType = {
@@ -147,7 +142,7 @@ export const store: RootStoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD_POST') {
+        if (action.type === ADD_POST) {
             if (this._state.profilePage.newPostTitle && this._state.profilePage.newPostText) {
                 this._state.profilePage.posts.push(
                     {
@@ -162,13 +157,17 @@ export const store: RootStoreType = {
             }
             this._subscriber();
         }
-        else if (action.type === 'CHANGE_NEW_POST_TITLE') {
+        else if (action.type === CHANGE_NEW_POST_TITLE) {
             this._state.profilePage.newPostTitle = action.title;
             this._subscriber();
         }
-        else if (action.type === 'CHANGE_NEW_POST_TEXT') {
+        else if (action.type === CHANGE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.text;
             this._subscriber();
         }
     }
 }
+
+export const addPostAC = () => ({type: ADD_POST} as const);
+export const changeNewPostTitleAC = (title: string) => ({type: CHANGE_NEW_POST_TITLE, title} as const);
+export const changeNewPostTextAC = (text: string) => ({type: CHANGE_NEW_POST_TEXT, text} as const);
