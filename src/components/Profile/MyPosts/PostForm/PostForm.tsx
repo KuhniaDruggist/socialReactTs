@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import style from './PostForm.module.css';
 import {ActionTypes, addPostAC, changeNewPostTextAC, changeNewPostTitleAC} from '../../../../redux/store';
 
@@ -13,6 +13,12 @@ function PostForm(props: PostFormPropsType) {
     const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch(changeNewPostTextAC(e.currentTarget.value));
 
     const addPost = () => props.dispatch(addPostAC());
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addPost();
+        }
+    }
 
     return (
         <div className={style.postForm}>
@@ -22,7 +28,7 @@ function PostForm(props: PostFormPropsType) {
                        name="newPostTitle"
                        placeholder="Title your post"
                        value={props.newPostTitle}
-                       onChange={ changeTitle } />
+                       onChange={ changeTitle } onKeyPress={onKeyPressHandler}/>
                 <textarea className={style.textPost}
                           name="newPostText"
                           placeholder="Add post text"
