@@ -2,11 +2,18 @@ import {v1} from 'uuid';
 
 //Constants action type
 const ADD_POST = 'ADD_POST';
+const ADD_MESSAGE = 'ADD_MESSAGE';
 const CHANGE_NEW_POST_TITLE = 'CHANGE_NEW_POST_TITLE';
 const CHANGE_NEW_POST_TEXT = 'CHANGE_NEW_POST_TEXT';
+const CHANGE_NEW_MESSAGE = 'CHANGE_NEW_MESSAGE';
 
 //Action types
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewPostTitleAC> | ReturnType<typeof changeNewPostTextAC>;
+export type ActionTypes =
+    ReturnType<typeof addPostAC> |
+    ReturnType<typeof changeNewPostTitleAC> |
+    ReturnType<typeof changeNewPostTextAC> |
+    ReturnType<typeof changeNewMessageAC> |
+    ReturnType<typeof addMessageAC>;
 
 //Store typing
 export type RootStoreType = {
@@ -31,6 +38,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
+    newMessage: string
 }
 export type NavbarType = {
     bestFriends: FriendType[]
@@ -110,7 +118,8 @@ export const store: RootStoreType = {
                 {id: v1(), message: 'I am fine. Thank you.', position: 'left'},
                 {id: v1(), message: 'Where is my money?', position: 'right'},
                 {id: v1(), message: 'Bye)))', position: 'left'}
-            ]
+            ],
+            newMessage: ''
         },
         navbar: {
             bestFriends: [
@@ -142,32 +151,60 @@ export const store: RootStoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            if (this._state.profilePage.newPostTitle && this._state.profilePage.newPostText) {
-                this._state.profilePage.posts.push(
-                    {
-                        id: v1(),
-                        title: this._state.profilePage.newPostTitle,
-                        message: this._state.profilePage.newPostText,
-                        likes: 0
-                    }
-                );
-                this._state.profilePage.newPostTitle = '';
-                this._state.profilePage.newPostText = '';
-            }
-            this._subscriber();
+        switch (action.type) {
+            case (ADD_POST) :
+                if (this._state.profilePage.newPostTitle && this._state.profilePage.newPostText) {
+                    this._state.profilePage.posts.push(
+                        {
+                            id: v1(),
+                            title: this._state.profilePage.newPostTitle,
+                            message: this._state.profilePage.newPostText,
+                            likes: 0
+                        }
+                    );
+                    this._state.profilePage.newPostTitle = '';
+                    this._state.profilePage.newPostText = '';
+                }
+                this._subscriber();
+                break
+
+            case (CHANGE_NEW_POST_TITLE):
+                this._state.profilePage.newPostTitle = action.title;
+                this._subscriber();
+                break
+
+            case (CHANGE_NEW_POST_TEXT):
+                this._state.profilePage.newPostText = action.text;
+                this._subscriber();
+                break
+
+            case (ADD_MESSAGE):
+                if (this._state.dialogsPage.newMessage) {
+                    this._state.dialogsPage.messages.push(
+                        {
+                            id: v1(),
+                            message: this._state.dialogsPage.newMessage,
+                            position: 'right'
+                        }
+                    );
+                    this._state.dialogsPage.newMessage = '';
+                }
+                this._subscriber();
+                break
+
+            case(CHANGE_NEW_MESSAGE):
+                this._state.dialogsPage.newMessage = action.text;
+                this._subscriber();
+                break
+
         }
-        else if (action.type === CHANGE_NEW_POST_TITLE) {
-            this._state.profilePage.newPostTitle = action.title;
-            this._subscriber();
-        }
-        else if (action.type === CHANGE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.text;
-            this._subscriber();
-        }
+
     }
 }
 
+
 export const addPostAC = () => ({type: ADD_POST} as const);
+export const addMessageAC = () => ({type: ADD_MESSAGE} as const);
 export const changeNewPostTitleAC = (title: string) => ({type: CHANGE_NEW_POST_TITLE, title} as const);
 export const changeNewPostTextAC = (text: string) => ({type: CHANGE_NEW_POST_TEXT, text} as const);
+export const changeNewMessageAC = (text: string) => ({type: CHANGE_NEW_MESSAGE, text} as const);
