@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import style from './PostForm.module.css';
-import {ActionTypes, addPostAC, changeNewPostTextAC, changeNewPostTitleAC} from '../../../../redux/store';
+import {ActionTypes} from '../../../../redux/store';
+import {addPost, changeNewPostText, changeNewPostTitle} from '../../../../redux/profileReducer';
 
 type PostFormPropsType = {
     dispatch: (action: ActionTypes) => void
@@ -9,14 +10,14 @@ type PostFormPropsType = {
 }
 
 function PostForm(props: PostFormPropsType) {
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewPostTitleAC(e.currentTarget.value));
-    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch(changeNewPostTextAC(e.currentTarget.value));
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewPostTitle(e.currentTarget.value));
+    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch(changeNewPostText(e.currentTarget.value));
 
-    const addPost = () => props.dispatch(addPostAC());
+    const addNewPost = () => props.dispatch(addPost());
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            addPost();
+            addNewPost();
         }
     }
 
@@ -28,13 +29,13 @@ function PostForm(props: PostFormPropsType) {
                        name="newPostTitle"
                        placeholder="Title your post"
                        value={props.newPostTitle}
-                       onChange={ changeTitle } onKeyPress={onKeyPressHandler}/>
+                       onChange={changeTitle} onKeyPress={onKeyPressHandler}/>
                 <textarea className={style.textPost}
                           name="newPostText"
                           placeholder="Add post text"
                           value={props.newPostText}
-                          onChange={ changeText }/>
-                <button className={style.button} type="button" onClick={addPost} >Add</button>
+                          onChange={changeText}/>
+                <button className={style.button} type="button" onClick={addNewPost}>Add</button>
             </form>
         </div>
     );
