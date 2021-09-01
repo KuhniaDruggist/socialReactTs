@@ -1,7 +1,7 @@
 import React from "react";
 import style from './../BestFriends.module.css';
 import {NavLink} from "react-router-dom";
-import {FriendType} from '../../../../redux/store';
+import {FriendType} from '../../../../redux/navbarReducer';
 
 const FriendItem = (props: FriendType) => {
     let path = "/bestFriends/" + props.id;
