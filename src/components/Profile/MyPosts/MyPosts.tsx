@@ -2,10 +2,10 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';
-import {ActionTypes, PostType} from '../../../redux/store';
+import {PostType, ProfileActionTypes} from '../../../redux/profileReducer';
 
 type MyPostPropsType = {
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: ProfileActionTypes) => void
     posts: PostType[]
     newPostTitle: string
     newPostText: string

@@ -1,10 +1,9 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import style from './PostForm.module.css';
-import {ActionTypes} from '../../../../redux/store';
-import {addPost, changeNewPostText, changeNewPostTitle} from '../../../../redux/profileReducer';
+import {addPost, changeNewPostText, changeNewPostTitle, ProfileActionTypes} from '../../../../redux/profileReducer';
 
 type PostFormPropsType = {
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: ProfileActionTypes) => void
     newPostTitle: string
     newPostText: string
 }

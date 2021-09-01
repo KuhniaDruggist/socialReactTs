@@ -3,11 +3,11 @@ import style from './Profile.module.css'
 import Background from './Background/Background';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ActionTypes, ProfilePageType} from '../../redux/store';
+import {ProfileActionTypes, ProfilePageType} from '../../redux/profileReducer';
 
 type ProfilePropsType = {
     state: ProfilePageType
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: ProfileActionTypes) => void
 }
 
 function Profile(props: ProfilePropsType) {
