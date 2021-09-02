@@ -1,24 +1,16 @@
 import {v1} from 'uuid';
 
-//Constants action type
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const CHANGE_NEW_MESSAGE = 'CHANGE_NEW_MESSAGE';
-
 //Action creators types
 export type DialogsActionTypes =
     ReturnType<typeof changeNewMessage> |
     ReturnType<typeof addMessage>;
 
 //Action creators
-export const addMessage = () => ({type: ADD_MESSAGE} as const);
-export const changeNewMessage = (text: string) => ({type: CHANGE_NEW_MESSAGE, text} as const);
+export const addMessage = () => ({type: 'ADD_MESSAGE'} as const);
+export const changeNewMessage = (text: string) => ({type: 'CHANGE_NEW_MESSAGE', text} as const);
 
 //Typing for initialState
-export type DialogsPageType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    newMessage: string
-}
+export type InitialStateType = typeof initialState
 export type DialogType = {
     id: string
     name: string
@@ -30,7 +22,7 @@ export type MessageType = {
     position: string
 }
 
-const initialState: DialogsPageType = {
+const initialState = {
     dialogs: [
         {
             id: v1(),
@@ -52,21 +44,25 @@ const initialState: DialogsPageType = {
             name: 'Кристофер',
             photo: 'https://i.pinimg.com/originals/e4/55/d2/e455d2e6e205c8eeeda1356a00cc6bfb.jpg'
         },
-        {id: v1(), name: 'Мирослава', photo: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'}
-    ],
+        {
+            id: v1(),
+            name: 'Мирослава',
+            photo: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'
+        }
+    ] as DialogType[],
     messages: [
         {id: v1(), message: 'Hi!', position: 'left'},
         {id: v1(), message: 'Hi. How are you?', position: 'right'},
         {id: v1(), message: 'I am fine. Thank you.', position: 'left'},
         {id: v1(), message: 'Where is my money?', position: 'right'},
         {id: v1(), message: 'Bye)))', position: 'left'}
-    ],
+    ] as MessageType[],
     newMessage: ''
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionTypes): DialogsPageType => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: DialogsActionTypes): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case 'ADD_MESSAGE':
             if (state.newMessage) {
                 state.messages.push(
                     {
@@ -78,7 +74,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Di
                 state.newMessage = '';
             }
             return state
-        case CHANGE_NEW_MESSAGE:
+        case 'CHANGE_NEW_MESSAGE':
             state.newMessage = action.text;
             return state
         default:
