@@ -1,14 +1,9 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import style from './Navbar.module.css';
-import BestFriends from './BestFriends/BestFriends';
-import {NavbarType} from '../../redux/navbarReducer';
+import {BestFriendsContainer} from './BestFriends/BestFriendsContainer';
 
-type PropsType = {
-    state: NavbarType
-}
-
-function Navbar(props: PropsType) {
+function Navbar() {
     return (
         <div className={style.wrapper}>
             <nav className={style.nav}>
@@ -40,7 +35,7 @@ function Navbar(props: PropsType) {
                 </ul>
             </nav>
 
-            <BestFriends bestFriends={props.state.bestFriends}/>
+            <BestFriendsContainer />
         </div>
     );
 }
