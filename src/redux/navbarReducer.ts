@@ -1,8 +1,8 @@
 import {v1} from 'uuid'
 
 //Typing for initialState
-type InitialStateType = typeof initialState
-type FriendType = {
+export type InitialStateType = typeof initialState
+export type FriendType = {
     id: string
     name: string
     photo: string
