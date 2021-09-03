@@ -1,18 +1,19 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import style from './PostForm.module.css';
-import {addPost, changeNewPostText, changeNewPostTitle, ProfileActionTypes} from '../../../../redux/profileReducer';
 
 type PostFormPropsType = {
-    dispatch: (action: ProfileActionTypes) => void
+    addPost: () => void
+    changeTitle: (title: string) => void
+    changeText: (text: string) => void
     newPostTitle: string
     newPostText: string
 }
 
 function PostForm(props: PostFormPropsType) {
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewPostTitle(e.currentTarget.value));
-    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch(changeNewPostText(e.currentTarget.value));
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => props.changeTitle(e.currentTarget.value);
+    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => props.changeText(e.currentTarget.value);
 
-    const addNewPost = () => props.dispatch(addPost());
+    const addNewPost = () => props.addPost();
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             e.preventDefault();
