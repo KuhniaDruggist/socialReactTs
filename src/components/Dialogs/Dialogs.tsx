@@ -2,19 +2,14 @@ import React, {ChangeEvent} from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {addMessage, changeNewMessage, DialogsActionTypes, DialogsPageType} from '../../redux/dialogsReducer';
+import {DialogsPropsType} from './DialogsContainer';
 
-type PropsType = {
-    state: DialogsPageType
-    dispatch: (action: DialogsActionTypes) => void
-}
+function Dialogs(props: DialogsPropsType) {
+    let dialogElements = props.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name} photo={d.photo}/>)
+    let messageElements = props.messages.map(m => <Message key={m.id} message={m.message} position={m.position}/>)
 
-function Dialogs(props: PropsType) {
-    let dialogElements = props.state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name} photo={d.photo}/>)
-    let messageElements = props.state.messages.map(m => <Message key={m.id} message={m.message} position={m.position}/>)
-
-    const changeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => props.dispatch(changeNewMessage(e.currentTarget.value));
-    const addNewMessage = () => props.dispatch(addMessage());
+    const changeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => props.changeMessage(e.currentTarget.value);
+    const addNewMessage = () => props.addNewMessage();
 
     return (
         <div className={style.dialogs}>
@@ -28,7 +23,7 @@ function Dialogs(props: PropsType) {
                 </ul>
                 <div className={style.messageForm}>
                     <textarea className={style.textMessage}
-                              value={props.state.newMessage}
+                              value={props.newMessage}
                               onChange={changeMessage}
                               name="newMessage"
                               placeholder="Type a message"/>
