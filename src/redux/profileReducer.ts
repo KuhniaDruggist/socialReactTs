@@ -40,32 +40,26 @@ const initialState = {
 }
 
 export const profileReducer = (state: InitialStateType = initialState, action: ProfileActionTypes): InitialStateType => {
-    let newState = {
-        ...state,
-        posts: [...state.posts]
-    }
-
     switch (action.type) {
         case 'ADD_POST':
-            if (newState.newPostTitle && newState.newPostText) {
-                newState.posts.push(
-                    {
+            if (state.newPostTitle && state.newPostText) {
+                return {
+                    ...state,
+                    posts: [...state.posts, {
                         id: v1(),
-                        title: newState.newPostTitle,
-                        message: newState.newPostText,
+                        title: state.newPostTitle,
+                        message: state.newPostText,
                         likes: 0
-                    }
-                );
-                newState.newPostTitle = '';
-                newState.newPostText = '';
+                    }],
+                    newPostTitle: '',
+                    newPostText: ''
+                }
             }
-            return newState
+            return state
         case 'CHANGE_NEW_POST_TITLE':
-            newState.newPostTitle = action.title;
-            return newState
+            return {...state, newPostTitle: action.title}
         case 'CHANGE_NEW_POST_TEXT':
-            newState.newPostText = action.text;
-            return newState
+            return {...state, newPostText: action.text}
         default:
             return state
     }
