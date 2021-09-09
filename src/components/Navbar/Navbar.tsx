@@ -27,9 +27,9 @@ function Navbar() {
                         </NavLink>
                     </li>
                     <li className={style.item}>
-                        <NavLink to="/friends"
+                        <NavLink to="/users"
                                  activeClassName={style.active}>
-                            Друзья
+                            Все пользователи
                         </NavLink>
                     </li>
                 </ul>

@@ -5,8 +5,8 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
-import Friends from './components/Friends/Friends';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
+import {UsersContainer} from './components/Users/UsersContainer';
 
 function App() {
     return (
@@ -18,7 +18,7 @@ function App() {
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/dialogs"
                        render={() => <DialogsContainer/>}/>
-                <Route path="/friends" render={() => <Friends/>}/>
+                <Route path="/users" render={() => <UsersContainer/>}/>
             </div>
         </div>
     );
