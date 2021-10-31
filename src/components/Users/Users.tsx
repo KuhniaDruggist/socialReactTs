@@ -1,15 +1,23 @@
 import React from 'react';
 import style from './Users.module.css'
 import userPhotoDefault from '../../assets/img/user.png';
-import { UsersContainerPropsType } from './UsersContainer';
-import Pagination from '../common/Pagination';
+import Pagination from '../common/Pagination/Pagination';
+import {UsersType} from '../../redux/usersReducer';
 
 //Typing for Users component props
 type UsersPropsType = {
-    onPageChanged: (page: number) => void
+    users: UsersType[]
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (selected: number) => void
+    setUsers: (users: UsersType[]) => void
+    toggleFollowing: (userId: number) => void
+    setTotalUsersCount: (totalCount: number) => void
+    setCurrentPage: (currentPage: number) => void
 }
 
-function Users(props: UsersContainerPropsType & UsersPropsType) {
+function Users(props: UsersPropsType) {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     let pages = [];
