@@ -3,13 +3,15 @@ export type UsersActionTypes =
     ReturnType<typeof setUsers> |
     ReturnType<typeof toggleFollowing> |
     ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setTotalUsersCount>
+    ReturnType<typeof setTotalUsersCount> |
+    ReturnType<typeof toggleIsFetching>
 
 //Action creators
 export const setUsers = (users: UsersType[]) => ({type: 'SET_USERS', users} as const);
 export const toggleFollowing = (userId: number) => ({type: 'TOGGLE_FOLLOWING', userId} as const);
 export const setTotalUsersCount = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
 export const setCurrentPage = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const);
+export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const);
 
 //Typing for initialState
 export type InitialStateType = typeof initialState
@@ -30,6 +32,7 @@ const initialState = {
     totalUsersCount: 0,
     pageSize: 5,
     currentPage: 1,
+    isFetching: false,
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersActionTypes): InitialStateType => {
@@ -56,6 +59,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
             return {
                 ...state,
                 currentPage: action.currentPage
+            }
+        case 'TOGGLE_IS_FETCHING':
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default:
             return state
