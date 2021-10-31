@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
-import {UsersContainer} from './components/Users/UsersContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 function App() {
     return (

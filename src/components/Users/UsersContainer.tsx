@@ -3,9 +3,11 @@ import {Dispatch} from 'redux';
 import Users from './Users';
 import {setCurrentPage, setTotalUsersCount, setUsers, toggleFollowing, UsersType} from '../../redux/usersReducer';
 import {RootStateType} from '../../redux/redux-store';
+import React from 'react';
+import axios from 'axios';
 
-//Typing for Users component props
-export type UsersPropsType = mapStatePropsType & mapDispatchPropsType
+//Typing for UsersContainer component props
+export type UsersContainerPropsType = mapStatePropsType & mapDispatchPropsType
 
 type mapStatePropsType = {
     users: UsersType[]
@@ -47,4 +49,38 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+class UsersContainer extends React.Component<UsersContainerPropsType> {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
+            })
+    }
+
+    onPageChanged = (page: number) => {
+        this.props.setCurrentPage(page);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
+    }
+
+    render() {
+        return (
+            <Users users={this.props.users}
+                   totalUsersCount={this.props.totalUsersCount}
+                   pageSize={this.props.pageSize}
+                   currentPage={this.props.currentPage}
+                   setUsers={this.props.setUsers}
+                   toggleFollowing={this.props.toggleFollowing}
+                   setTotalUsersCount={this.props.setTotalUsersCount}
+                   setCurrentPage={this.props.setCurrentPage}
+                   onPageChanged={this.onPageChanged}
+            />
+        );
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
