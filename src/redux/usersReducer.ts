@@ -1,9 +1,15 @@
 //Action creators types
-export type UsersActionTypes = ReturnType<typeof setUsers> | ReturnType<typeof toggleFollowing>
+export type UsersActionTypes =
+    ReturnType<typeof setUsers> |
+    ReturnType<typeof toggleFollowing> |
+    ReturnType<typeof setCurrentPage> |
+    ReturnType<typeof setTotalUsersCount>
 
 //Action creators
 export const setUsers = (users: UsersType[]) => ({type: 'SET_USERS', users} as const);
 export const toggleFollowing = (userId: number) => ({type: 'TOGGLE_FOLLOWING', userId} as const);
+export const setTotalUsersCount = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
+export const setCurrentPage = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const);
 
 //Typing for initialState
 export type InitialStateType = typeof initialState
@@ -20,7 +26,10 @@ export type PhotosType = {
 }
 
 const initialState = {
-    users: [] as UsersType[]
+    users: [] as UsersType[],
+    totalUsersCount: 0,
+    pageSize: 5,
+    currentPage: 1,
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersActionTypes): InitialStateType => {
@@ -28,7 +37,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
         case 'SET_USERS':
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users,
             }
         case 'TOGGLE_FOLLOWING':
             return {
@@ -37,6 +46,16 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
                     ? {...u, followed: !u.followed}
                     : u
                 )
+            }
+        case 'SET_TOTAL_USERS_COUNT':
+            return {
+                ...state,
+                totalUsersCount: action.totalCount
+            }
+        case 'SET_CURRENT_PAGE':
+            return {
+                ...state,
+                currentPage: action.currentPage
             }
         default:
             return state
