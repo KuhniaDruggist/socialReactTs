@@ -1,5 +1,4 @@
 import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
 import Users from './Users';
 import {
     setCurrentPage,
@@ -40,26 +39,6 @@ const mapStateToProps = (state: RootStateType): mapStatePropsType => {
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-    }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
-    return {
-        setUsers: (users: UsersType[]) => {
-            dispatch(setUsers(users))
-        },
-        toggleFollowing: (userId: number) => {
-            dispatch(toggleFollowing(userId))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCount(totalCount))
-        },
-        setCurrentPage: (currentPage: number) => {
-            dispatch(setCurrentPage(currentPage))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetching(isFetching))
-        }
     }
 }
 
@@ -104,4 +83,11 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps,
+    {
+        setUsers,
+        toggleFollowing,
+        setTotalUsersCount,
+        setCurrentPage,
+        toggleIsFetching
+    })(UsersContainer);
