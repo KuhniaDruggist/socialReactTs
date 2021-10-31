@@ -1,11 +1,14 @@
 .users {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
 .user {
-    max-width: 300px;
+    min-width: 300px;
     margin-bottom: 25px;
     padding: 10px;
     border: 2px solid antiquewhite;
