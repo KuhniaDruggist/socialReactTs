@@ -3,6 +3,7 @@ import style from './Users.module.css'
 import userPhotoDefault from '../../assets/img/user.png';
 import Pagination from '../common/Pagination/Pagination';
 import {UsersType} from '../../redux/usersReducer';
+import {NavLink} from 'react-router-dom';
 
 //Typing for Users component props
 type UsersPropsType = {
@@ -37,8 +38,10 @@ function Users(props: UsersPropsType) {
                             <li className={style.user} key={u.id}>
                                 <div className={style.header}>
                                     <div className={style.avatarWrapper}>
-                                        <img className={style.avatar} alt="Аватар пользователя"
-                                             src={u.photos.small != null ? u.photos.small : userPhotoDefault}/>
+                                        <NavLink to={`/profile/${u.id}`}>
+                                            <img className={style.avatar} alt="Аватар пользователя"
+                                                 src={u.photos.small != null ? u.photos.small : userPhotoDefault}/>
+                                        </NavLink>
                                     </div>
                                     <button className={`${style.button} ${buttonClass}`}
                                             onClick={onClickToggle}>{u.followed ? 'unfollow' : 'follow'}</button>

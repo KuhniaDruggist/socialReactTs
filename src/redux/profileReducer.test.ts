@@ -1,10 +1,18 @@
-import {addPost, changeNewPostText, changeNewPostTitle, PostType, profileReducer} from './profileReducer';
+import {
+    addPost,
+    changeNewPostText,
+    changeNewPostTitle,
+    PostType,
+    profileReducer,
+    UserProfileType
+} from './profileReducer';
 import {v1} from 'uuid';
 
 type StartStateType = {
     posts: PostType[]
     newPostTitle: string
     newPostText: string
+    profile: UserProfileType | null
 }
 
 let startState: StartStateType;
@@ -20,7 +28,8 @@ beforeEach(() => {
             }
         ],
         newPostTitle: '',
-        newPostText: ''
+        newPostText: '',
+        profile: null as UserProfileType | null
     }
 });
 

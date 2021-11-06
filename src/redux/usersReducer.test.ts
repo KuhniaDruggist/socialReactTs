@@ -2,7 +2,11 @@ import {setUsers, toggleFollowing, usersReducer, UsersType} from './usersReducer
 
 test('users should be added to state', () => {
     const startState = {
-        users: [] as UsersType[]
+        users: [] as UsersType[],
+        totalUsersCount: 0,
+        pageSize: 5,
+        currentPage: 1,
+        isFetching: false,
     }
 
     const users: UsersType[] = [
@@ -11,7 +15,7 @@ test('users should be added to state', () => {
             id: 1,
             photos: {
                 small: 'https://pbs.twimg.com/media/EgX6nMxUYAAirGg.jpg',
-                large: null
+                large: undefined
             },
             status: 'I love free Belarus',
             followed: true
@@ -21,7 +25,7 @@ test('users should be added to state', () => {
             id: 2,
             photos: {
                 small: 'http://www.dejurka.ru/wp-content/uploads/2018/10/cute-cats-draw4.jpg',
-                large: null
+                large: undefined
             },
             status: 'I love my cat Semyon',
             followed: false
@@ -42,7 +46,7 @@ test('property "followed" should be changed', () => {
                 id: 1,
                 photos: {
                     small: 'https://pbs.twimg.com/media/EgX6nMxUYAAirGg.jpg',
-                    large: null
+                    large: undefined
                 },
                 status: 'I love free Belarus',
                 followed: true
@@ -52,12 +56,16 @@ test('property "followed" should be changed', () => {
                 id: 2,
                 photos: {
                     small: 'http://www.dejurka.ru/wp-content/uploads/2018/10/cute-cats-draw4.jpg',
-                    large: null
+                    large: undefined
                 },
                 status: 'I love my cat Semyon',
                 followed: false
             }
-        ] as UsersType[]
+        ] as UsersType[],
+        totalUsersCount: 0,
+        pageSize: 5,
+        currentPage: 1,
+        isFetching: false,
     }
     const userId = startState.users[0].id;
 

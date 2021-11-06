@@ -23,8 +23,8 @@ export type UsersType = {
     followed: boolean
 }
 export type PhotosType = {
-    small: string | null
-    large: string | null
+    small: string | undefined
+    large: string | undefined
 }
 
 const initialState = {
